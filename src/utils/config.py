@@ -1,0 +1,5 @@
+LLM_MODEL = "qwen2.5:7b"
+EMBEDDING_MODEL = "nomic-embed-text"
+
+CHUNK_SIZE = 1000
+CHUNK_OVERLAP = 200
