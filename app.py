@@ -3,6 +3,7 @@ import time
 import streamlit as st
 
 from src.services.paper_processor import process_pdf
+from src.pdf_processing.extractor import PDFExtractionError
 from src.main import research_assistant
 from src.utils.config import (
     LLM_MODEL,
@@ -53,10 +54,6 @@ uploaded_file = st.file_uploader(
     )
 
 with st.sidebar:
-    # st.header("Options")
-
-    # st.divider()
-
     st.subheader("📄 Paper Information")
 
     if st.session_state.paper_loaded:
@@ -91,9 +88,7 @@ with st.sidebar:
 
     if st.button("🗑 Clear Chat", use_container_width=True):
         st.session_state.messages = []
-        st.rerun()    
-                
-            
+        st.rerun()
 
 
 if uploaded_file is not None:
@@ -113,13 +108,22 @@ if uploaded_file is not None:
         with open(path, "wb") as f:
             f.write(uploaded_file.getbuffer())
 
-        with st.spinner("Processing PDF..."):
+        try:
+            with st.spinner("Processing PDF..."):
 
-            start = time.time()
+                start = time.time()
 
-            paper_text, chunks, vector_store, title, page_count = process_pdf(path)
+                paper_text, chunks, vector_store, title, page_count = process_pdf(path)
 
-            end = time.time()
+                end = time.time()
+
+        except PDFExtractionError as e:
+            st.error(f"❌ {e}")
+            st.stop()
+
+        except Exception as e:
+            st.error(f"❌ Unexpected error while processing the PDF: {e}")
+            st.stop()
 
         st.session_state.paper_loaded = True
         st.session_state.paper_text = paper_text
@@ -206,4 +210,3 @@ if st.session_state.messages:
         history,
         file_name="conversation.txt",
     )
-
