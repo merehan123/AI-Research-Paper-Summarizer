@@ -5,7 +5,8 @@ import ollama
 def generate_response(
     prompt: str,
     temperature: float = 0.3,
-    max_tokens: int = 1024
+    max_tokens: int = 1024,
+    num_ctx: int = 8192,
 ) -> str:
     """
     Generate a response using the Qwen model through Ollama.
@@ -14,6 +15,9 @@ def generate_response(
         prompt: The input prompt for the LLM.
         temperature: Controls randomness of the generated response.
         max_tokens: Maximum number of tokens to generate.
+        num_ctx: Context window size in tokens. Ollama defaults to
+            2048, which silently truncates long papers — raised
+            here so full-paper prompts aren't cut off.
 
     Returns:
         The generated text response, or a user-facing error message
@@ -31,7 +35,8 @@ def generate_response(
             ],
             options={
                 "temperature": temperature,
-                "num_predict": max_tokens
+                "num_predict": max_tokens,
+                "num_ctx": num_ctx,
             }
         )
 
