@@ -1,4 +1,4 @@
-# 📚 AI Research Paper Summarizer
+# 📚 AI Research Paper Assistant
 
 An AI-powered application that helps students and researchers quickly understand academic papers using Large Language Models (LLMs) and Retrieval-Augmented Generation (RAG).
 
