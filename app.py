@@ -1,13 +1,8 @@
 import os
 import time
 import streamlit as st
-
 from src.services.paper_processor import process_pdf
 from src.main import research_assistant
-from src.utils.config import (
-    LLM_MODEL,
-    EMBEDDING_MODEL,
-)
 
 st.set_page_config(
     page_title="AI Research Paper Assistant",
@@ -80,12 +75,6 @@ with st.sidebar:
 
         if st.button("⭐ Contributions", use_container_width=True):
             quick_prompt = "What are the main contributions of this paper?"
-
-        if st.button("💡 Explain Method", use_container_width=True):
-            quick_prompt = "Explain the methodology used in this paper."
-
-        if st.button("📊 Dataset", use_container_width=True):
-            quick_prompt = "What dataset was used in this paper?"
 
     st.divider()
 

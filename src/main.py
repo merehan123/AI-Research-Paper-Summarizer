@@ -42,6 +42,9 @@ def research_assistant(
             question=user_request,
             vector_store=vector_store,
         )
+    
+    elif intent == "UNRELATED":
+        return "Please ask a question related to the uploaded paper."
 
     else:
         return "Unable to classify the request."

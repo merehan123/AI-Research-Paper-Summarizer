@@ -1,7 +1,7 @@
 import fitz  # PyMuPDF
 
 
-def extract_text_from_pdf(pdf_path: str) -> str:
+def extract_text_from_pdf(pdf_path: str):
     """
     Extract text from all pages of a PDF.
 
@@ -30,5 +30,7 @@ def extract_text_from_pdf(pdf_path: str) -> str:
             if line.strip():
                 title = line.strip()
                 break
+            
+    document.close()
 
     return text, title, page_count

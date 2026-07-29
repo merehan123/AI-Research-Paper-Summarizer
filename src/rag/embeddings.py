@@ -7,10 +7,3 @@ def load_embedding_model() -> OllamaEmbeddings:
     """
     return OllamaEmbeddings(model=EMBEDDING_MODEL)
 
-
-def create_embedding(text: str) -> list[float]:
-    """
-    Create an embedding vector for a single text.
-    """
-    embedding_model = load_embedding_model()
-    return embedding_model.embed_query(text)
