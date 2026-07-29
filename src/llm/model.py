@@ -1,8 +1,6 @@
 from src.utils.config import LLM_MODEL
 import ollama
 
-# Create a reusable function to generate responses using the Qwen model
-
 
 def generate_response(
     prompt: str,
@@ -18,21 +16,35 @@ def generate_response(
         max_tokens: Maximum number of tokens to generate.
 
     Returns:
-        The generated text response.
+        The generated text response, or a user-facing error message
+        if the model call fails.
     """
 
-    response = ollama.chat(
-        model=LLM_MODEL,
-        messages=[
-            {
-                "role": "user",
-                "content": prompt
+    try:
+        response = ollama.chat(
+            model=LLM_MODEL,
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            options={
+                "temperature": temperature,
+                "num_predict": max_tokens
             }
-        ],
-        options={
-            "temperature": temperature,
-            "num_predict": max_tokens
-        }
-    )
+        )
 
-    return response["message"]["content"]
+        return response["message"]["content"]
+
+    except ollama.ResponseError as e:
+        return f"⚠️ The AI model returned an error: {e.error}"
+
+    except (ConnectionError, TimeoutError):
+        return (
+            "⚠️ Couldn't reach the Ollama server. "
+            "Make sure it's running (`ollama serve`)."
+        )
+
+    except Exception as e:
+        return f"⚠️ Unexpected error while generating a response: {e}"

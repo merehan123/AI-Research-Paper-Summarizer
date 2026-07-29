@@ -1,7 +1,11 @@
 import fitz  # PyMuPDF
 
 
-def extract_text_from_pdf(pdf_path: str):
+class PDFExtractionError(Exception):
+    """Raised when a PDF cannot be opened or read."""
+
+
+def extract_text_from_pdf(pdf_path: str) -> tuple[str, str, int]:
     """
     Extract text from all pages of a PDF.
 
@@ -9,28 +13,23 @@ def extract_text_from_pdf(pdf_path: str):
         pdf_path: Path to the PDF file.
 
     Returns:
-        The extracted text as a single string.
+        A (text, title, page_count) tuple.
+
+    Raises:
+        PDFExtractionError: if the file isn't a valid, readable,
+        text-based PDF.
     """
+
     if not pdf_path.lower().endswith(".pdf"):
-        raise ValueError("Invalid file format. Only PDF files are supported.")
+        raise PDFExtractionError("Invalid file format. Only PDF files are supported.")
 
-    document = fitz.open(pdf_path)
+    try:
+        document = fitz.open(pdf_path)
+    except Exception as e:
+        raise PDFExtractionError(f"Couldn't open the PDF file: {e}") from e
 
-    text = ""
-
-    for page in document:
-        text += page.get_text()
-
-    page_count = len(document)
-
-    title = document.metadata.get("title", "").strip()
-
-    if not title:
-        for line in text.splitlines():
-            if line.strip():
-                title = line.strip()
-                break
-            
-    document.close()
-
-    return text, title, page_count
+    try:
+        ...
+        return text, title, page_count
+    finally:
+        document.close()
