@@ -230,11 +230,11 @@ Coming Soon...
 
 # 👥 Team Members
 
-merehan ibraheem
-sama waleed
-yasmin abdelhamid
-aya bakr
-sondos alsayed
+- merehan ibraheem
+- sama waleed
+- yasmin abdelhamid
+- aya bakr
+- sondos alsayed
 
 ---
 
