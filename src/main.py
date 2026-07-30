@@ -33,9 +33,9 @@ def research_assistant(
 
     elif intent == "CONCEPTS":
         return explain_concepts(
-            user_request,
-            paper_text,
-        )
+            user_request=user_request,
+            vector_store=vector_store,
+    )
 
     elif intent == "QUESTION":
         return answer_question(

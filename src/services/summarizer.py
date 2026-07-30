@@ -14,5 +14,5 @@ def generate_summary(paper_text: str) -> str:
     return generate_response(
         prompt,
         temperature=0.2,
-        max_tokens=500,
+        max_tokens=700,
     )

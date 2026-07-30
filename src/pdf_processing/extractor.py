@@ -1,6 +1,5 @@
 import fitz  # PyMuPDF
 
-
 def extract_text_from_pdf(pdf_path: str) -> str:
     """
     Extract text from all pages of a PDF.

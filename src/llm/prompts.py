@@ -173,7 +173,7 @@ Instructions:
 4. Then explain how the concept is used in the research paper.
 5. Use ONLY information found in the provided paper.
 6. If the paper does not contain enough information to explain the requested concept accurately, respond exactly:
-The requested concept MUST be identified from the user's question.
+The requested concept is not discussed in the provided paper.
 
 Rules:
 - Never explain a different concept.

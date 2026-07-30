@@ -1,5 +1,3 @@
-import random
-
 from src.llm.model import generate_response
 from src.llm.prompts import GREETING_PROMPT
 

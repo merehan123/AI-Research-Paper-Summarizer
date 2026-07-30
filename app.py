@@ -48,9 +48,6 @@ uploaded_file = st.file_uploader(
     )
 
 with st.sidebar:
-    # st.header("Options")
-
-    # st.divider()
 
     st.subheader("📄 Paper Information")
 
