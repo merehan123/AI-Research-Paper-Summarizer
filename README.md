@@ -68,36 +68,32 @@ Allow users to ask questions related to the uploaded paper using Retrieval-Augme
 # 🏗️ System Architecture
 
 ```
-                  User
-                    │
-                    ▼
+                User
+                  │
+                  ▼
              Upload PDF
-                    │
-                    ▼
-          PDF Text Extraction
-                    │
-                    ▼
-           Text Cleaning
-                    │
-                    ▼
-          Text Chunking
-                    │
-                    ▼
-        Sentence Embeddings
-                    │
-                    ▼
-            FAISS Index
-                    │
-         ┌──────────┴──────────┐
-         ▼                     ▼
-  Summarization          Question Answering
-         │                     │
-         └──────────┬──────────┘
-                    ▼
+                  │
+                  ▼
+        PDF Processing Pipeline
+                  │
+                  ▼
+        Clean → Chunk → Embeddings
+                  │
+                  ▼
+               FAISS
+                  │
+                  ▼
+           Context Retrieval
+                  │
+                  ▼
              Large Language Model
-                    │
-                    ▼
-             Streamlit Interface
+                  ▲
+                  │
+      Summary / Contributions /
+      Concepts / QA / Greeting
+                  │
+                  ▼
+            Streamlit Interface
 ```
 
 ---
@@ -151,20 +147,15 @@ AI-Research-Paper-Summarizer/
 
 ## Embedding Model
 
-- Sentence Transformers
+- nomic-embed-text
 
 ## Vector Database
 
 - FAISS
 
-## Deep Learning Framework
+## Inference Engine
 
-- PyTorch
-
-## NLP Libraries
-
-- Hugging Face Transformers
-
+- Ollama
 ---
 
 # ⚙️ Workflow
@@ -239,13 +230,11 @@ Coming Soon...
 
 # 👥 Team Members
 
-| Name | Responsibility |
-|------|----------------|
-| Member 1 | PDF Processing |
-| Member 2 | LLM Integration |
-| Member 3 | RAG Pipeline |
-| Member 4 | AI Services |
-| Member 5 | Frontend & Pipeline Integration |
+merehan ibraheem
+sama waleed
+yasmin abdelhamid
+aya bakr
+sondos alsayed
 
 ---
 
